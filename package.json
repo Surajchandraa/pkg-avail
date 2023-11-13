@@ -1,6 +1,6 @@
 {
   "name": "pkg-avail",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple command-line tool to check package name availability on npm",
   "main": "package.js",
   "scripts": {
