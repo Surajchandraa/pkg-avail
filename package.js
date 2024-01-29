@@ -1,9 +1,8 @@
 #!/usr/bin/env node
+const ansi=require("./ansi")
 
-let red = "\x1b[31m";
-let blue = "\x1b[34m";
-let reset = "\x1b[0m";
-let yellow = "\x1b[33m";
+
+
 
 const https = require('https');
 
@@ -30,14 +29,14 @@ for (let i = 0; i < packageName.length; i++) {
     res.on('end', () => {
       let jsonData = JSON.parse(data);
       if (jsonData.error && jsonData.error === 'Not found') {
-        console.log(blue + `Package name '${packageName[i]}' is available!` + reset);
+        console.log(ansi.fgBlue + `[${i}]  Package name '${packageName[i]}' is available! \n` + ansi.reset);
       } else {
-        console.log(yellow + `Package name '${packageName[i]}' is already taken.` + reset);
+        console.log(ansi.fgYellow + `[${i}]  Package name '${packageName[i]}' is already taken.` + ansi.reset);
         if (verboseMode) {
-          console.log(red + `Package Details:` + reset);
-          console.log('package name:' + ` ${packageName[i]}`)
-          console.log(`${blue}- Version:${reset} ${jsonData['dist-tags'].latest}`);
-          console.log(`${blue}-Description:${reset} ${jsonData.versions[jsonData['dist-tags'].latest].description}`);
+          console.log(ansi.fgRed + `Package Details:` + ansi.reset);
+          console.log(ansi.fgBlue+'package name:' +ansi.reset+ ` ${packageName[i]}`)
+          console.log(`${ansi.fgBlue}- Version:${ansi.reset} ${jsonData['dist-tags'].latest}`);
+          console.log(`${ansi.fgBlue}-Description:${ansi.reset} ${jsonData.versions[jsonData['dist-tags'].latest].description}`);
           const authorInfo = jsonData.versions[jsonData['dist-tags'].latest].author;
 
           let author;
@@ -47,7 +46,7 @@ for (let i = 0; i < packageName.length; i++) {
             author = 'Unknown';
           }
 
-          console.log(`${blue}- Author:${reset} ${author}\n\n`);
+          console.log(`${ansi.fgBlue}- Author:${ansi.reset} ${author}\n\n`);
         }
       }
     });
