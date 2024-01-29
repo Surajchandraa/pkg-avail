@@ -33,14 +33,18 @@
      check somerandomname infox struct-nd express
      ```
 - ***output***-
+
+
     ![Screenshot](images/defalut_mode_op.png)
 
 ## Example 3:
 - ***command***-
 ```bash
-    check somerandomname infox express --verbose
+    check somerandomname express text-effects --verbose
 ```
 
 - ***output***-
+
+
 ![Screenshot](images/verbose_mode.png)
     
